@@ -1,0 +1,132 @@
+html{
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+
+body{
+    color: #b5b8bd;
+	background: #f9faff;
+	font-weight: 400;
+	font-size: 20px;
+	font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+   margin: 0 auto;
+	text-align: center;
+	padding: 0 20px;
+}
+
+.page {
+     padding: 50px 0;  // глобальная страничка 
+}
+
+a{
+    text-decoration: none;
+    color: #B24E51;
+	
+}
+
+a:hover,
+a:focus {
+	color: #afb3b8;
+	outline: none;
+}
+
+li{
+    list-style: nnoe;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+h6,
+h5,
+h4,
+h3,
+h2,
+h1{
+    margin: 0;
+    padding: 0;
+    color: #5d7a8c;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+.page__nav-link--active{
+  color: #afb3b8;
+}
+
+.form{
+    text-align: center;
+    align-items: center;
+}
+
+
+.page__envelope{
+    
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+     
+}
+
+.page__completion{
+    text-align: left;
+    padding: 50px 0;
+    
+}
+
+input[type="checkbox"] {
+ display: none;
+}
+ 
+label {
+  color: #000;
+ cursor: default;
+
+}
+ 
+label:before {
+ content: " ";
+ color: #000;
+ display: inline-block;
+/* шрифт Awesome*/
+ font: 10px/10px FontAwesome;
+ 
+ position: relative;
+ text-align: center;
+ text-indent: 0px;
+ width: 15px;
+ height: 15px;
+ background: #FFF;
+ border: 2px solid #cf5965;
+ border-image: initial;
+ vertical-align: middle;
+ border-radius: 5px;
+}
+ 
+input:checked + label:before {
+/* глифон - галочка */
+ content: "\f00c";
+}
+ 
+input:disabled + label:before {
+ background: #eee;
+ color: #aaa;
+}
+
+
+
+

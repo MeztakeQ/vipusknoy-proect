@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>1 страница</title>
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+	<script src="https://kit.fontawesome.com/8d2596c097.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<section class="page first-page"> <!-- первая страница( главный блок )-->
+		<div class="container"> <!-- контейнер( global )-->
+
+			<nav id="menu" class="page__menu"> <!-- бургер меню-->
+				<button class="page__menu-handle">
+					<span class="page__menu-line"></span>
+				</button>
+				<div class="page__user">
+					<ul class="page__list">
+						<li class="page__list-item"><a class="page__list-link" href="#"><i
+									class="fas fa-home"></i><span>Администратор<span></a></li>
+						<li class="page__list-item"><a class="page__list-link" href="#"><i
+									class="fas fa-folder"></i><span>Пользователь<span></a></li>
+					</ul>
+				</div>
+
+				<div class="page__morph-shape" data-morph-open="M300-10c0,0,295,164,295,410c0,232-295,410-295,410"
+					data-morph-close="M300-10C300-10,5,154,5,400c0,232,295,410,295,410">
+					<svg width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="none">
+						<path fill="none" d="M300-10c0,0,0,164,0,410c0,232,0,410,0,410" />
+					</svg>
+				</div>
+			</nav>
+
+			<div class="page__envelope"> <!-- блок с контентом-->
+
+				<div class="page__content">
+					<h1 class="page__content-title">Журнал учета оборудования</h1>
+					<p class="page__content-text">Учет и регистрация пользовательского оборудования</p>
+
+					<nav class="page__nav first-page-nav"> <!-- навигация по страничкам-->
+						<a class="page__nav-link" href="search-equipment.html">Поиск оборудования</a>
+						<a class="page__nav-link" href="equipment-accounting.html">Учет оборудования</a>
+						<a class="page__nav-link" href="equipment-registration.html">Регистрация оборудования</a>
+						<a class="page__nav-link" href="additionally.html">Дополнительно</a>
+					</nav>
+
+					<div class="page__footer"> <!-- подвал сайта -->
+						<p class="page__footer-text">
+							По вопросам технической поддержки обращаться по адресу:
+							<a class="page__footer-link" href="mailto:it.st.kupavna@gmail.com"> it.st.kupavna@gmail.com</a>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	
+	  <script src="js/main.js"></script>
+
+	
+
+<!--  скрипт для меню -->
+	<script>  
+		(function () {
+
+			function SVGMenu(el, options) {
+				this.el = el;
+				this.init();
+			}
+
+			SVGMenu.prototype.init = function () {
+				this.trigger = this.el.querySelector('button.page__menu-handle');
+				this.shapeEl = this.el.querySelector('div.page__morph-shape');
+
+				var s = Snap(this.shapeEl.querySelector('svg'));
+				this.pathEl = s.select('path');
+				this.paths = {
+					reset: this.pathEl.attr('d'),
+					open: this.shapeEl.getAttribute('data-morph-open'),
+					close: this.shapeEl.getAttribute('data-morph-close')
+				};
+
+				this.isOpen = false;
+
+				this.initEvents();
+			};
+
+			SVGMenu.prototype.initEvents = function () {
+				this.trigger.addEventListener('click', this.toggle.bind(this));
+			};
+
+			SVGMenu.prototype.toggle = function () {
+				var self = this;
+
+				if (this.isOpen) {
+					classie.remove(self.el, 'menu--anim');
+					setTimeout(function () {
+						classie.remove(self.el, 'menu--open');
+					}, 250);
+				} else {
+					classie.add(self.el, 'menu--anim');
+					setTimeout(function () {
+						classie.add(self.el, 'menu--open');
+					}, 250);
+				}
+				this.pathEl.stop().animate({
+					'path': this.isOpen ? this.paths.close : this.paths.open
+				}, 350, mina.easeout, function () {
+					self.pathEl.stop().animate({
+						'path': self.paths.reset
+					}, 800, mina.elastic);
+				});
+
+				this.isOpen = !this.isOpen;
+			};
+
+			new SVGMenu(document.getElementById('menu'));
+
+		})();
+	</script>
+</body>
+
+</html>
